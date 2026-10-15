@@ -57,6 +57,18 @@ svg.i{width:19px;height:19px;flex:none}
 .nav .btn{min-height:42px;padding:0 18px;font-size:14.5px}
 
 /* Copertina */
+.evento{background:radial-gradient(120% 90% at 20% 0%,#10235c 0%,#0a1230 45%,var(--notte) 100%);color:#fff;padding:90px 0}
+.evento-griglia{display:grid;gap:36px;align-items:center}
+@media (min-width:860px){.evento-griglia{grid-template-columns:minmax(0,420px) 1fr;gap:64px}}
+.evento-locandina{width:100%;height:auto;border-radius:var(--r);box-shadow:0 30px 80px -30px rgba(40,90,255,.6)}
+.evento .eyebrow{color:#8fb0ff}
+.evento h2.titolo em{color:#6f97ff}
+.evento-data{font-size:20px;font-weight:600;margin-bottom:14px}
+.evento-punti{list-style:none;margin:0 0 26px;display:grid;gap:10px;color:rgba(255,255,255,.82)}
+.evento-punti li{padding-left:22px;position:relative}
+.evento-punti li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:#4f7cff}
+.evento-nota{font-size:13px;color:rgba(255,255,255,.5);margin-top:12px}
+.evento-pillola{display:flex;width:fit-content;align-items:center;gap:8px;margin-bottom:16px;padding:9px 14px;border-radius:999px;background:rgba(40,80,255,.32);border:1px solid rgba(120,160,255,.5);color:#fff;font-size:14px;font-weight:600}
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--notte)}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:respira 18s ease-in-out infinite alternate}
 @keyframes respira{to{transform:scale(1.12)}}
@@ -218,6 +230,7 @@ html.lenis,html.lenis body{height:auto}
 <section class="hero">
   <img src="img/parete.jpg" alt="La parete fiorita del Jué con la lampada d'ottone e una bottiglia sul tavolo">
   <div class="wrap">
+    <a class="evento-pillola" href="#martedi-blu" data-fino="2026-10-21T03:00:00+02:00">💙 Martedì 20 ottobre · Martedì Blu</a>
     <span class="eyebrow">Viale IV Novembre · Montecatini Terme</span>
     <h1>Dove il gusto incontra lo <em>stile</em>.</h1>
     <p>Cocktail d'autore, apericena e cucina, e nel weekend il DJ set. Dalla prima bollicina all'ultimo ballo, nello stesso posto.</p>
@@ -228,6 +241,26 @@ html.lenis,html.lenis body{height:auto}
     <div class="adesso" id="adesso"><i></i><span>Aperti tutte le sere fino alle 3</span></div>
   </div>
 </section>
+
+<!-- SERATA MARTEDÌ BLU (20/10/2026): si nasconde da sola dopo le 3 del 21/10 (data-fino); poi va tolta da qui insieme al CSS .evento e a img/martedi-blu.jpg -->
+<section class="evento" id="martedi-blu" data-fino="2026-10-21T03:00:00+02:00" aria-labelledby="t-evento">
+  <div class="wrap evento-griglia">
+    <img class="evento-locandina su" src="img/martedi-blu.jpg" alt="Locandina della serata Martedì Blu: Jué Club × Bombay Sapphire, martedì 20 ottobre" width="900" height="1205" loading="lazy">
+    <div class="su">
+      <span class="eyebrow">La prossima serata</span>
+      <h2 class="titolo" id="t-evento">Martedì <em>Blu</em>.</h2>
+      <p class="evento-data">Martedì 20 ottobre · dalle 21:00</p>
+      <ul class="evento-punti">
+        <li>Jué Club × Bombay Sapphire</li>
+        <li>Con ogni Bombay &amp; Tonic, una bottiglietta Bombay Sapphire in omaggio</li>
+        <li>DJ set: Andrea Nigro</li>
+      </ul>
+      <a class="btn btn-oro" href="tel:+393316610911"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Prenota al 331 661 0911</a>
+      <p class="evento-nota">Fino a esaurimento scorte.</p>
+    </div>
+  </div>
+</section>
+<script>document.querySelectorAll('[data-fino]').forEach(function(e){if(Date.now()>Date.parse(e.dataset.fino))e.remove()})</script>
 
 <section class="anime" aria-label="Le tre anime del Jué">
   <div class="wrap">
