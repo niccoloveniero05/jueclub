@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://jueclub.it/">
 <title>Jué Club · Cocktail bar, bistrot e DJ set a Montecatini Terme</title>
 <meta name="description" content="Jué Club in viale IV Novembre a Montecatini Terme: cocktail d'autore, apericena, cucina e DJ set nel weekend.">
 <meta name="theme-color" content="#0A0A0C">
 <meta property="og:title" content="Jué Club · Montecatini Terme">
 <meta property="og:description" content="Dove il gusto incontra lo stile.">
-<meta property="og:image" content="img/parete.jpg">
+<meta property="og:image" content="https://jueclub.it/img/parete.jpg">
+<meta property="og:url" content="https://jueclub.it/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -216,7 +217,7 @@ html.lenis,html.lenis body{height:auto}
       <a class="btn btn-oro" href="tel:+393316610911"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Prenota un tavolo</a>
       <a class="btn btn-vetro" href="#cocktail">La drinklist</a>
     </div>
-    <div class="adesso" id="adesso"><i></i><span>Tutti i giorni dalle 18:00</span></div>
+    <div class="adesso" id="adesso"><i></i><span>Aperti tutte le sere fino alle 3</span></div>
   </div>
 </section>
 
@@ -234,7 +235,7 @@ html.lenis,html.lenis body{height:auto}
   <div class="wrap griglia">
     <figure class="su">
       <img src="img/locale.jpg" alt="Il salottino del Jué con i divani e le pareti a fiori" loading="lazy">
-      <div class="timbro"><div><b>18:00</b><span>tutti i giorni</span></div></div>
+      <div class="timbro"><div><span>fino alle</span><b>03:00</b><span>ogni sera</span></div></div>
     </figure>
     <div class="su">
       <span class="eyebrow">Il Jué</span>
@@ -321,13 +322,13 @@ html.lenis,html.lenis body{height:auto}
       <div class="scheda">
         <h3>Orari</h3>
         <ul class="orari" id="orari">
-          <li data-g="1"><span>Lunedì</span><span>dalle 18:00</span></li>
-          <li data-g="2"><span>Martedì</span><span>dalle 18:00</span></li>
-          <li data-g="3"><span>Mercoledì</span><span>dalle 18:00</span></li>
-          <li data-g="4"><span>Giovedì</span><span>dalle 18:00</span></li>
-          <li data-g="5"><span>Venerdì</span><span>dalle 18:00 · DJ</span></li>
-          <li data-g="6"><span>Sabato</span><span>dalle 18:00 · Club</span></li>
-          <li data-g="0"><span>Domenica</span><span>dalle 18:00</span></li>
+          <li data-g="1"><span>Lunedì</span><span>18:30 – 03:00</span></li>
+          <li data-g="2"><span>Martedì</span><span>18:30 – 03:00</span></li>
+          <li data-g="3"><span>Mercoledì</span><span>18:30 – 03:00</span></li>
+          <li data-g="4"><span>Giovedì</span><span>18:30 – 03:00</span></li>
+          <li data-g="5"><span>Venerdì</span><span>18:30 – 03:00 · DJ</span></li>
+          <li data-g="6"><span>Sabato</span><span>18:30 – 03:00 · Club</span></li>
+          <li data-g="0"><span>Domenica</span><span>17:00 – 03:00</span></li>
         </ul>
       </div>
       <div class="scheda contatti">
@@ -373,9 +374,10 @@ lb.addEventListener('click',()=>lb.classList.remove('aperto'));
 // Orari: oggi evidenziato e "aperto ora"
 const d=new Date(),g=d.getDay(),ora=d.getHours()+d.getMinutes()/60;
 document.querySelectorAll('#orari li').forEach(li=>li.classList.toggle('oggi',+li.dataset.g===g));
-const apertoOra=ora>=18||ora<2;
+// Orari della scheda Google (15/10): lun-sab 18:30-03, domenica 17-03
+const apertoOra=ora<3||ora>=(g===0?17:18.5);
 const a=document.getElementById('adesso');
-a.querySelector('span').textContent=apertoOra?'Aperti ora':'Oggi aperti dalle 18:00';
+a.querySelector('span').textContent=apertoOra?'Aperti ora':'Oggi aperti dalle '+(g===0?'17:00':'18:30');
 a.classList.toggle('chiuso',!apertoOra);
 document.getElementById('anno').textContent=d.getFullYear();
 </script>
